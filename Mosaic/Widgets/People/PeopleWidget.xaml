@@ -1,0 +1,9 @@
+﻿<UserControl x:Class="People.PeopleWidget"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             MouseLeftButtonUp="UserControlMouseLeftButtonUp">
+    <Grid>
+        <UniformGrid Name="Host" Background="#0f92d6"/>
+        <TextBlock Text="People" Foreground="White" FontSize="14" VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="10,0,0,10"/>
+    </Grid>
+</UserControl>

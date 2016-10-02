@@ -1,0 +1,23 @@
+﻿<UserControl x:Class="Mosaic.Core.Controls.MosaicFriendWidgetControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             ClipToBounds="True" Loaded="UserControlLoaded" Unloaded="UserControlUnloaded">
+    <UserControl.Resources>
+        <Storyboard x:Key="TileAnim">
+            <DoubleAnimation Storyboard.TargetName="UserPicTranslate" Storyboard.TargetProperty="Y" From="0" To="90" Duration="0:0:0.4" AccelerationRatio="0.3" DecelerationRatio="0.7"/>
+            <ThicknessAnimation Storyboard.TargetName="UserName" Storyboard.TargetProperty="Margin" From="10,0,10,170" To="10,3,10,80" Duration="0:0:0.4" AccelerationRatio="0.3" DecelerationRatio="0.7"/>
+            <DoubleAnimation Storyboard.TargetName="UserPicTranslate" Storyboard.TargetProperty="Y" BeginTime="0:0:4.5" To="180" Duration="0:0:0.4" AccelerationRatio="0.3" DecelerationRatio="0.7"/>
+            <ThicknessAnimation Storyboard.TargetName="UserName" Storyboard.TargetProperty="Margin" BeginTime="0:0:4.5" To="10,0,10,0" Duration="0:0:0.4" AccelerationRatio="0.3" DecelerationRatio="0.7"/>
+            <DoubleAnimation Storyboard.TargetName="UserPicTranslate" Storyboard.TargetProperty="Y" BeginTime="0:0:8.5" To="0" Duration="0:0:0.3" AccelerationRatio="0.3" DecelerationRatio="0.7"/>
+            <ThicknessAnimation Storyboard.TargetName="UserName" Storyboard.TargetProperty="Margin" BeginTime="0:0:8.5" To="10,0,10,170" Duration="0:0:0.4" AccelerationRatio="0.3" DecelerationRatio="0.7"/>
+        </Storyboard>
+    </UserControl.Resources>
+    <Grid>
+        <TextBlock Name="UserName" Text="User" Foreground="White" VerticalAlignment="Bottom" HorizontalAlignment="Left" FontSize="32" Margin="10,0,0,170" TextWrapping="Wrap"/>
+        <Image Name="UserPic" Stretch="UniformToFill">
+            <Image.RenderTransform>
+                <TranslateTransform x:Name="UserPicTranslate"/>
+            </Image.RenderTransform>
+        </Image>
+    </Grid>
+</UserControl>

@@ -1,0 +1,23 @@
+﻿<Window x:Class="Mosaic.Windows.PinToolbarWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:Controls="clr-namespace:Mosaic.Controls"
+        xmlns:Properties="clr-namespace:Mosaic.Properties" x:Name="this"
+        Width="90" AllowsTransparency="True" Background="Black" Topmost="True" WindowStyle="None" ResizeMode="NoResize" ShowInTaskbar="False"
+        Loaded="WindowLoaded">
+    <Window.Resources>
+        <Storyboard x:Key="ToolbarOpenAnim" BeginTime="0:0:0.05">
+            <DoubleAnimation Storyboard.TargetName="this" Storyboard.TargetProperty="Left" Duration="0:0:0.2" AccelerationRatio="0.7" DecelerationRatio="0.3"/>
+            <DoubleAnimation Storyboard.TargetName="this" Storyboard.TargetProperty="Opacity" To="1" Duration="0:0:0.2" AccelerationRatio="0.5" DecelerationRatio="0.3"/>
+        </Storyboard>
+        <Storyboard x:Key="ToolbarCloseAnim" BeginTime="0:0:0.05" Completed="ToolbarCloseAnimCompleted">
+            <DoubleAnimation Storyboard.TargetName="this" Storyboard.TargetProperty="Left" Duration="0:0:0.2" AccelerationRatio="0.7" DecelerationRatio="0.3"/>
+            <DoubleAnimation Storyboard.TargetName="this" Storyboard.TargetProperty="Opacity" To="0.01" Duration="0:0:0.4" AccelerationRatio="0.5" DecelerationRatio="0.3"/>
+        </Storyboard>
+    </Window.Resources>
+    <StackPanel VerticalAlignment="Center">
+        <Controls:ToolbarItem x:Name="PinAppButton" Icon="/Mosaic.Graphics;component/Toolbar/add_icon.png" Title="{x:Static Properties:Resources.ToolbarPinAppItem}" MouseLeftButtonUp="PinAppButtonMouseLeftButtonUp"/>
+        <Controls:ToolbarItem x:Name="PinWebButton" Icon="/Mosaic.Graphics;component/Toolbar/pin_icon.png" Title="{x:Static Properties:Resources.ToolbarPinWebItem}" MouseLeftButtonUp="PinWebButtonMouseLeftButtonUp"/>
+        <Controls:ToolbarItem x:Name="BackButton" VerticalAlignment="Top" Icon="/Mosaic.Graphics;component/Toolbar/back_icon.png" Title="{x:Static Properties:Resources.ToolbarBackItem}" MouseLeftButtonUp="BackButtonMouseLeftButtonUp"/>
+    </StackPanel>
+</Window>

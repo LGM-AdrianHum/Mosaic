@@ -1,0 +1,18 @@
+﻿<Application x:Class="Mosaic.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             ShutdownMode="OnMainWindowClose"
+             Startup="ApplicationStartup" DispatcherUnhandledException="ApplicationDispatcherUnhandledException">
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Mosaic.Base;component/Resources/TabControlGlass.xaml"/>
+                <ResourceDictionary Source="/Mosaic.Base;component/Resources/Colors.xaml"/>
+                <ResourceDictionary Source="/Mosaic.Base;component/Resources/MetroCheckBox.xaml"/>
+                <ResourceDictionary Source="/Mosaic.Base;component/Resources/MetroComboBox.xaml"/>
+                <ResourceDictionary Source="/Mosaic.Base;component/Resources/MetroButton.xaml"/>
+                <ResourceDictionary Source="/Mosaic.Base;component/Resources/MetroTextBox.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

@@ -1,0 +1,34 @@
+﻿<UserControl x:Class="People.Hub"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:People="clr-namespace:People" xmlns:Properties="clr-namespace:People.Properties" Foreground="White"
+             Loaded="UserControlLoaded">
+    <UserControl.Background>
+        <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+            <GradientStop Color="#0f1625" Offset="0"/>
+            <GradientStop Color="#1e2d4c" Offset="0.2"/>
+            <GradientStop Color="#2a3f6a" Offset="0.5"/>
+            <GradientStop Color="#3b5998" Offset="1"/>
+        </LinearGradientBrush>
+    </UserControl.Background>
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Mosaic.Base;component/Resources/MetroProgressBar.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Grid>
+        <People:DragScrollViewer VerticalScrollBarVisibility="Disabled" HorizontalScrollBarVisibility="Hidden" Margin="0,120,0,0" DragEverywhere="True">
+            <StackPanel Orientation="Horizontal">
+                <DockPanel Margin="150,0,0,20">
+                    <TextBlock DockPanel.Dock="Top" Text="{x:Static Properties:Resources.HubWhatsNew}" MaxWidth="380" FontSize="26" FontWeight="Light" VerticalAlignment="Top" HorizontalAlignment="Left" TextWrapping="Wrap" Margin="0,0,0,0"/>
+                    <WrapPanel Name="FeedPanel" Orientation="Vertical" Margin="0,20,0,20" HorizontalAlignment="Left"/>
+                </DockPanel>
+            </StackPanel>
+        </People:DragScrollViewer>
+        <Image Name="BackButton" Margin="50,58,20,0" Width="48" HorizontalAlignment="Left" VerticalAlignment="Top" MouseLeftButtonUp="BackButtonMouseLeftButtonUp" Source="/People;component/Resources/back_icon_hub.png" />
+        <TextBlock Text="People" FontSize="76" FontWeight="Light" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="150,20,0,0"/>
+        <ProgressBar Name="ProgressBar" VerticalAlignment="Top" Style="{StaticResource ProgressBarStyle}" IsIndeterminate="True" Padding="0"/>
+    </Grid>
+</UserControl>

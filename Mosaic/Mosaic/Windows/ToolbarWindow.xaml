@@ -1,0 +1,27 @@
+﻿<Window x:Class="Mosaic.Windows.ToolbarWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:Controls="clr-namespace:Mosaic.Controls" xmlns:Properties="clr-namespace:Mosaic.Properties" x:Name="this"
+        Width="90" AllowsTransparency="True" Background="Black" Topmost="True" WindowStyle="None" ResizeMode="NoResize" ShowInTaskbar="False"
+        Loaded="WindowLoaded" MouseLeave="ToolbarMouseLeave" MouseLeftButtonUp="WindowMouseLeftButtonUp" PreviewKeyDown="WindowPreviewKeyDown">
+    <Window.Resources>
+        <Storyboard x:Key="ToolbarOpenAnim" BeginTime="0:0:0.05">
+            <DoubleAnimation Storyboard.TargetName="this" Storyboard.TargetProperty="Left" Duration="0:0:0.2" AccelerationRatio="0.7" DecelerationRatio="0.3"/>
+            <DoubleAnimation Storyboard.TargetName="this" Storyboard.TargetProperty="Opacity" To="1" Duration="0:0:0.2" AccelerationRatio="0.5" DecelerationRatio="0.3"/>
+            <!--<DoubleAnimation Storyboard.TargetName="this" Storyboard.TargetProperty="Width" To="120" Duration="0:0:0.2"/>-->
+        </Storyboard>
+        <Storyboard x:Key="ToolbarCloseAnim" BeginTime="0:0:0.3">
+            <DoubleAnimation Storyboard.TargetName="this" Storyboard.TargetProperty="Left" Duration="0:0:0.2" AccelerationRatio="0.7" DecelerationRatio="0.3"/>
+            <DoubleAnimation Storyboard.TargetName="this" Storyboard.TargetProperty="Opacity" To="0.01" Duration="0:0:0.4" AccelerationRatio="0.5" DecelerationRatio="0.3"/>
+            <!--<DoubleAnimation Storyboard.TargetName="this" Storyboard.TargetProperty="Width" To="1" Duration="0:0:0.3" AccelerationRatio="0.5" DecelerationRatio="0.3"/>-->
+        </Storyboard>
+    </Window.Resources>
+    <Grid>
+        <StackPanel Name="Toolbar" VerticalAlignment="Center">
+            <Controls:ToolbarItem x:Name="WidgetsButton" Icon="/Mosaic.Graphics;component/Toolbar/add_icon.png" Title="{x:Static Properties:Resources.ToolbarWidgetsItem}" MouseLeftButtonUp="WidgetsButtonMouseLeftButtonUp"/>
+            <Controls:ToolbarItem x:Name="PinButton" Icon="/Mosaic.Graphics;component/Toolbar/pin_icon.png" Title="{x:Static Properties:Resources.ToolbarPinItem}" MouseLeftButtonUp="PinButtonMouseLeftButtonUp"/>
+            <Controls:ToolbarItem x:Name="PeopleButton" Icon="/Mosaic.Graphics;component/Toolbar/pinfriend_icon.png" Title="{x:Static Properties:Resources.ToolbarPeopleItem}" MouseLeftButtonUp="PeopleButtonMouseLeftButtonUp"/>
+            <Controls:ToolbarItem x:Name="SettingsButton" Icon="/Mosaic.Graphics;component/Toolbar/settings_icon.png" Title="{x:Static Properties:Resources.ToolbarOptionsItem}" MouseLeftButtonUp="SettingsButtonMouseLeftButtonUp"/>
+            <Controls:ToolbarItem x:Name="ExitButton" Icon="/Mosaic.Graphics;component/Toolbar/close_icon.png" Title="{x:Static Properties:Resources.ToolbarExitItem}" MouseLeftButtonUp="ExitButtonMouseLeftButtonUp"/>
+        </StackPanel>
+    </Grid>
+</Window>

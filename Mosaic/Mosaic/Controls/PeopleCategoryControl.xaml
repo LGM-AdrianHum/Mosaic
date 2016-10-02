@@ -1,0 +1,8 @@
+﻿<UserControl x:Class="Mosaic.Controls.PeopleCategoryControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             Background="#0f92d6" Foreground="White" Width="50" Height="50" HorizontalAlignment="Left" Margin="5,5,0,5">
+    <Viewbox HorizontalAlignment="Left" Margin="5,0,0,0">
+        <TextBlock x:Name="TitleBlock" Text="a" FontWeight="Light"/>
+    </Viewbox>
+</UserControl>

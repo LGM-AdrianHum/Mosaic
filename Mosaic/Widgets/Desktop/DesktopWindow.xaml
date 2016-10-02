@@ -1,0 +1,27 @@
+﻿<Window x:Class="Desktop.DesktopWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="DesktopWindow" AllowsTransparency="True" Background="Transparent" ResizeMode="NoResize" WindowStyle="None"
+        Loaded="WindowLoaded" SourceInitialized="WindowSourceInitialized">
+    <Window.Resources>
+        <Storyboard x:Key="FlyInAnim" Completed="StoryboardCompleted">
+            <DoubleAnimation Storyboard.TargetName="DesktopImage" Storyboard.TargetProperty="Width" Duration="0:0:0.2" AccelerationRatio="0.4"/>
+            <DoubleAnimation Storyboard.TargetName="DesktopImage" Storyboard.TargetProperty="Height" Duration="0:0:0.2" AccelerationRatio="0.4"/>
+            <DoubleAnimation Storyboard.TargetName="DesktopImage" Storyboard.TargetProperty="(Canvas.Left)" To="0" Duration="0:0:0.2" AccelerationRatio="0.4"/>
+            <DoubleAnimation Storyboard.TargetName="DesktopImage" Storyboard.TargetProperty="(Canvas.Top)" To="0" Duration="0:0:0.2" AccelerationRatio="0.4"/>
+        </Storyboard>
+        <Storyboard x:Key="FadeOutAnim">
+            <DoubleAnimation Storyboard.TargetName="this" Storyboard.TargetProperty="Opacity" To="0" Duration="0:0:0.2"/>
+        </Storyboard>
+    </Window.Resources>
+    <Canvas>
+        <Image Name="DesktopImage" RenderTransformOrigin="0.5,0.5" Stretch="UniformToFill">
+            <Image.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform  x:Name="DesktopImageScale" ScaleX="1" ScaleY="{Binding ElementName=DesktopImageScale, Path=ScaleX}"/>
+                    <TranslateTransform x:Name="DesktopImageTranslate"/>
+                </TransformGroup>
+            </Image.RenderTransform>
+        </Image>
+    </Canvas>
+</Window>

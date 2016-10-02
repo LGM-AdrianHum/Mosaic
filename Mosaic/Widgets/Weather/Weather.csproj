@@ -1,0 +1,188 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{ADADAE80-72EA-4E8C-B5B5-4EFBEB1FAAF6}</ProjectGuid>
+    <OutputType>library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Weather</RootNamespace>
+    <AssemblyName>Weather</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\bin\Debug\Widgets\Weather\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\..\bin\Release\Widgets\Weather\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ForecastData.cs" />
+    <Compile Include="ForecastItem.xaml.cs">
+      <DependentUpon>ForecastItem.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="HourForecastData.cs" />
+    <Compile Include="HourForecastItem.xaml.cs">
+      <DependentUpon>HourForecastItem.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Hub.xaml.cs">
+      <DependentUpon>Hub.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="LocationData.cs" />
+    <Compile Include="Options.xaml.cs">
+      <DependentUpon>Options.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Settings.cs" />
+    <Compile Include="TemperatureScale.cs" />
+    <Compile Include="WeatherConverter.cs" />
+    <Compile Include="WeatherData.cs" />
+    <Compile Include="WeatherProvider.cs" />
+    <Compile Include="WeatherState.cs" />
+    <Compile Include="WeatherWidget.xaml.cs">
+      <DependentUpon>WeatherWidget.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Widget.cs" />
+    <EmbeddedResource Include="Properties\Resources.ru-RU.resx" />
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <AppDesigner Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Mosaic.Base\Mosaic.Base.csproj">
+      <Project>{74CB342D-3D96-42D5-8B13-76306FE35380}</Project>
+      <Name>Mosaic.Base</Name>
+      <Private>False</Private>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="ForecastItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="HourForecastItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Hub.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Options.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="WeatherWidget.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\weather_1.png" />
+    <Resource Include="Resources\weather_11.png" />
+    <Resource Include="Resources\weather_12.png" />
+    <Resource Include="Resources\weather_13.png" />
+    <Resource Include="Resources\weather_14.png" />
+    <Resource Include="Resources\weather_15.png" />
+    <Resource Include="Resources\weather_16.png" />
+    <Resource Include="Resources\weather_17.png" />
+    <Resource Include="Resources\weather_18.png" />
+    <Resource Include="Resources\weather_19.png" />
+    <Resource Include="Resources\weather_2.png" />
+    <Resource Include="Resources\weather_20.png" />
+    <Resource Include="Resources\weather_21.png" />
+    <Resource Include="Resources\weather_22.png" />
+    <Resource Include="Resources\weather_23.png" />
+    <Resource Include="Resources\weather_24.png" />
+    <Resource Include="Resources\weather_25.png" />
+    <Resource Include="Resources\weather_26.png" />
+    <Resource Include="Resources\weather_29.png" />
+    <Resource Include="Resources\weather_3.png" />
+    <Resource Include="Resources\weather_30.png" />
+    <Resource Include="Resources\weather_31.png" />
+    <Resource Include="Resources\weather_32.png" />
+    <Resource Include="Resources\weather_33.png" />
+    <Resource Include="Resources\weather_34.png" />
+    <Resource Include="Resources\weather_35.png" />
+    <Resource Include="Resources\weather_36.png" />
+    <Resource Include="Resources\weather_37.png" />
+    <Resource Include="Resources\weather_38.png" />
+    <Resource Include="Resources\weather_39.png" />
+    <Resource Include="Resources\weather_4.png" />
+    <Resource Include="Resources\weather_40.png" />
+    <Resource Include="Resources\weather_41.png" />
+    <Resource Include="Resources\weather_42.png" />
+    <Resource Include="Resources\weather_43.png" />
+    <Resource Include="Resources\weather_44.png" />
+    <Resource Include="Resources\weather_5.png" />
+    <Resource Include="Resources\weather_51.png" />
+    <Resource Include="Resources\weather_52.png" />
+    <Resource Include="Resources\weather_53.png" />
+    <Resource Include="Resources\weather_54.png" />
+    <Resource Include="Resources\weather_6.png" />
+    <Resource Include="Resources\weather_7.png" />
+    <Resource Include="Resources\weather_8.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\back_icon_hub.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\weatherhub_placeholder.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\sun.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,22 @@
+﻿<UserControl x:Class="People.UserPicControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Name="this" ClipToBounds="True">
+    <UserControl.Resources>
+        <Storyboard x:Key="Mode0Anim" Completed="StoryboardCompleted" Duration="0:0:0.2" FillBehavior="Stop">
+            <DoubleAnimation Storyboard.TargetName="this" Storyboard.TargetProperty="Opacity" Duration="0:0:0.2" To="0" DecelerationRatio="0.3"/>
+            <DoubleAnimation Storyboard.TargetName="UserPic" Storyboard.TargetProperty="Opacity" To="0" Duration="0:0:0.2"/>
+        </Storyboard>
+        <Storyboard x:Key="Mode1Anim" Completed="StoryboardCompleted1" FillBehavior="Stop" Duration="0:0:0.2" DecelerationRatio="0.25">
+            <DoubleAnimation Storyboard.TargetName="this" Storyboard.TargetProperty="Opacity" To="1" Duration="0:0:0.2"/>
+            <DoubleAnimation Storyboard.TargetName="UserPic" Storyboard.TargetProperty="Opacity" To="0" Duration="0:0:0.2"/>
+        </Storyboard>
+        <Storyboard x:Key="Mode2Anim" Completed="StoryboardCompleted2" FillBehavior="Stop" Duration="0:0:0.2" DecelerationRatio="0.25">
+            <DoubleAnimation Storyboard.TargetName="this" Storyboard.TargetProperty="Opacity" To="1" Duration="0:0:0.2"/>
+            <DoubleAnimation Storyboard.TargetName="UserPic" Storyboard.TargetProperty="Opacity" To="1" Duration="0:0:0.2"/>
+        </Storyboard>
+    </UserControl.Resources>
+    <Grid Background="#b1f3ff" Margin="-1">
+        <Image Name="UserPic" Stretch="UniformToFill" RenderOptions.BitmapScalingMode="HighQuality"/>
+    </Grid>
+</UserControl>

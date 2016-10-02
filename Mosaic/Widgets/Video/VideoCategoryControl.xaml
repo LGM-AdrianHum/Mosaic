@@ -1,0 +1,9 @@
+﻿<UserControl x:Class="Video.VideoCategoryControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             Margin="0,0,30,0">
+    <DockPanel>
+        <TextBlock Name="Header" DockPanel.Dock="Top" Text="B" FontSize="65" Foreground="White" FontWeight="Light"/>
+        <WrapPanel Name="ThumbnailsHost" Margin="0,30,0,0" Orientation="Vertical"/>
+    </DockPanel>
+</UserControl>

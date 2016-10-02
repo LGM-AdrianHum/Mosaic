@@ -1,0 +1,13 @@
+﻿<UserControl x:Class="People.CommentItem"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             Background="#273b65" Margin="0,3,0,3">
+    <DockPanel>
+        <Image Name="Avatar" DockPanel.Dock="Left" Width="50" Height="50" Margin="5" VerticalAlignment="Top"/>
+        <TextBlock Name="Date" DockPanel.Dock="Bottom" Margin="0,3,0,3" Foreground="White" FontSize="14"/>
+        <TextBlock FontSize="14" TextWrapping="Wrap" Margin="0,0,0,0">
+            <Run Name="Username" Foreground="White"/>
+            <Run Name="Message" Foreground="LightGray"/>
+        </TextBlock>
+    </DockPanel>
+</UserControl>

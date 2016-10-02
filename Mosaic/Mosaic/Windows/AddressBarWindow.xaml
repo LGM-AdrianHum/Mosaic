@@ -1,0 +1,19 @@
+﻿<Window x:Class="Mosaic.Windows.AddressBarWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        x:Name="this"
+        Height="60" AllowsTransparency="False" Background="Black" Topmost="True" WindowStyle="None" ResizeMode="NoResize" ShowInTaskbar="False"
+        Loaded="WindowLoaded" KeyDown="WindowKeyDown">
+    <Window.Resources>
+        <Storyboard x:Key="OpenAnim" BeginTime="0:0:0.05">
+            <DoubleAnimation Storyboard.TargetName="this" Storyboard.TargetProperty="Top" From="-60" To="0" Duration="0:0:0.2" AccelerationRatio="0.7" DecelerationRatio="0.3"/>
+        </Storyboard>
+        <Storyboard x:Key="CloseAnim" BeginTime="0:0:0.1" Completed="AddressBarCloseAnimCompleted">
+            <DoubleAnimation Storyboard.TargetName="this" Storyboard.TargetProperty="Top" From="0" To="-60" Duration="0:0:0.2" AccelerationRatio="0.7" DecelerationRatio="0.3"/>
+        </Storyboard>
+    </Window.Resources>
+    <Grid Background="Black">
+        <TextBox Name="AddressBox" Text="http://" Style="{StaticResource MetroTextBox}" Margin="100,0,100,0" Height="34" Background="#c5c6c5"
+                 VerticalAlignment="Center" VerticalContentAlignment="Center" FontSize="16" KeyDown="AddressBoxKeyDown"/>
+    </Grid>
+</Window>

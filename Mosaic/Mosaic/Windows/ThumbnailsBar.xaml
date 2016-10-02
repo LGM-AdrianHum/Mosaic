@@ -1,0 +1,24 @@
+﻿<Window x:Class="Mosaic.Windows.ThumbnailsBar"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:Controls="clr-namespace:Mosaic.Controls"
+        xmlns:Core="clr-namespace:Mosaic.Core;assembly=Mosaic.Core" x:Name="this"
+        Width="200" AllowsTransparency="True" Background="Black" Topmost="True" WindowStyle="None" ResizeMode="NoResize" ShowInTaskbar="False"
+        SourceInitialized="ThisSourceInitialized" Loaded="WindowLoaded" MouseLeave="ToolbarMouseLeave" MouseLeftButtonUp="WindowMouseLeftButtonUp">
+    <Window.Resources>
+        <Storyboard x:Key="ToolbarOpenAnim" BeginTime="0:0:0.05" Completed="ToolbaOpenAnimCompleted">
+            <DoubleAnimation Storyboard.TargetName="this" Storyboard.TargetProperty="Left" To="0" Duration="0:0:0.2" AccelerationRatio="0.7" DecelerationRatio="0.3"/>
+            <!--<DoubleAnimation Storyboard.TargetName="this" Storyboard.TargetProperty="Opacity" To="1" Duration="0:0:0.2" AccelerationRatio="0.5" DecelerationRatio="0.3"/>-->
+        </Storyboard>
+        <Storyboard x:Key="ToolbarCloseAnim" BeginTime="0:0:0.3" Completed="ToolbarCloseAnimCompleted">
+            <DoubleAnimation Storyboard.TargetName="this" Storyboard.TargetProperty="Left" To="-199" Duration="0:0:0.2" AccelerationRatio="0.7" DecelerationRatio="0.3"/>
+            <!--<DoubleAnimation Storyboard.TargetName="this" Storyboard.TargetProperty="Opacity" To="0.01" Duration="0:0:0.4" AccelerationRatio="0.5" DecelerationRatio="0.3"/>-->
+        </Storyboard>
+    </Window.Resources>
+    <Grid>
+        <Core:DragScrollViewer Margin="0,100,3,0" VerticalScrollBarVisibility="Hidden" HorizontalScrollBarVisibility="Disabled" DragEverywhere="True">
+            <StackPanel Name="ThumbsList" VerticalAlignment="Center" HorizontalAlignment="Center" Background="#00000000" MouseLeftButtonUp="ThumbsListMouseLeftButtonUp">
+
+            </StackPanel>
+        </Core:DragScrollViewer>
+    </Grid>
+</Window>

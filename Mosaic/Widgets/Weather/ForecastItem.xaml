@@ -1,0 +1,14 @@
+﻿<UserControl x:Class="Weather.ForecastItem"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             Background="#7e8c41" Foreground="White" FontWeight="Light">
+    <StackPanel>
+        <TextBlock Name="Day" Text="Monday 1" FontSize="26" Margin="30,20,10,0" TextTrimming="CharacterEllipsis"/>
+        <Image Name="WeatherIcon" Source="Resources/weather_1.png" Height="120"/>
+        <TextBlock Name="Temperature" Text="20°" FontSize="36" Margin="30,0,0,0"/>
+        <TextBlock Name="Sky" Text="Cloudy" FontSize="18" Margin="30,0,0,10" TextTrimming="CharacterEllipsis"/>
+        <TextBlock Name="Precipitation" Text="0% chance of rain" FontSize="18" Margin="30,-12,0,10" TextTrimming="CharacterEllipsis"/>
+        <!--<TextBlock Name="Wind" Text="9 mph SW"/>-->
+        <TextBlock Name="LowTemperature" Text="48° Low" FontSize="18" Margin="30,0,0,50"/>
+    </StackPanel>
+</UserControl>

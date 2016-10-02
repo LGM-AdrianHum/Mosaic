@@ -1,0 +1,23 @@
+﻿<UserControl x:Class="Pictures.PicturesWidget"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             Background="Black" MouseLeftButtonUp="UserControlMouseLeftButtonUp">
+    <UserControl.Resources>
+        <Storyboard x:Key="SwitchPictureAnim">
+            <DoubleAnimation Storyboard.TargetName="PictureTranslate" Storyboard.TargetProperty="X" From="0" To="-350" Duration="0:0:0.7" AccelerationRatio="0.6" Completed="SwitchAnimationCompleted" FillBehavior="Stop"/>
+        </Storyboard>
+    </UserControl.Resources>
+    <Grid ClipToBounds="True">
+        <Image Name="PictureBg" Stretch="UniformToFill">
+            <Image.RenderTransform>
+                <TranslateTransform x:Name="PictureBgTranslate"/>
+            </Image.RenderTransform>
+        </Image>
+        <Image Name="Picture" Stretch="UniformToFill">
+            <Image.RenderTransform>
+                <TranslateTransform x:Name="PictureTranslate"/>
+            </Image.RenderTransform>
+        </Image>
+        <TextBlock Text="Pictures" Foreground="White" FontSize="14" VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="10,0,0,10"/>
+    </Grid>
+</UserControl>

@@ -1,0 +1,120 @@
+﻿<UserControl x:Class="Music.MusicWidget"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             Background="Black" ClipToBounds="True" MouseLeftButtonUp="UserControlMouseLeftButtonUp"
+             MouseEnter="UserControlMouseEnter" MouseLeave="UserControlMouseLeave">
+    <UserControl.Resources>
+        <Storyboard x:Key="PopupOpenAnim" Completed="PopupOpenAnimCompleted" BeginTime="0:0:0.3">
+            <DoubleAnimation Storyboard.TargetName="PopupTranslate" Storyboard.TargetProperty="Y" To="0" Duration="0:0:0.3" AccelerationRatio="0.3" DecelerationRatio="0.6"/>
+            <DoubleAnimation Storyboard.TargetName="PopupGrid" Storyboard.TargetProperty="Opacity" To="1" Duration="0:0:0.3" AccelerationRatio="0.3" DecelerationRatio="0.6"/>
+        </Storyboard>
+        <Storyboard x:Key="PopupCloseAnim" BeginTime="0:0:2.5">
+            <DoubleAnimation Storyboard.TargetName="PopupTranslate" Storyboard.TargetProperty="Y" To="-50" Duration="0:0:0.3" AccelerationRatio="0.3" DecelerationRatio="0.6"/>
+            <DoubleAnimation Storyboard.TargetName="PopupGrid" Storyboard.TargetProperty="Opacity" To="0" Duration="0:0:0.3" AccelerationRatio="0.3" DecelerationRatio="0.6"/>
+        </Storyboard>
+        <Storyboard x:Key="ShowControlsPanelAnim">
+            <DoubleAnimation Storyboard.TargetName="ControlsGridTranslate" Storyboard.TargetProperty="Y" To="0" Duration="0:0:0.3" AccelerationRatio="0.3" DecelerationRatio="0.6"/>
+            <DoubleAnimation Storyboard.TargetName="ControlsGrid" Storyboard.TargetProperty="Opacity" To="1" Duration="0:0:0.3" AccelerationRatio="0.3" DecelerationRatio="0.6"/>
+        </Storyboard>
+        <Storyboard x:Key="HideControlsPanelAnim">
+            <DoubleAnimation Storyboard.TargetName="ControlsGridTranslate" Storyboard.TargetProperty="Y" To="50" Duration="0:0:0.3" AccelerationRatio="0.3" DecelerationRatio="0.6"/>
+            <DoubleAnimation Storyboard.TargetName="ControlsGrid" Storyboard.TargetProperty="Opacity" To="0" Duration="0:0:0.3" AccelerationRatio="0.3" DecelerationRatio="0.6"/>
+        </Storyboard>
+        <Storyboard x:Key="AlbumArtFadeOut" Completed="StoryboardCompleted">
+            <DoubleAnimation Storyboard.TargetProperty="Opacity" To="0" Duration="0:0:0.3" AccelerationRatio="0.3" DecelerationRatio="0.6"/>
+        </Storyboard>
+        <Storyboard x:Key="AlbumArtFadeIn">
+            <DoubleAnimation Storyboard.TargetProperty="Opacity" To="1" Duration="0:0:0.3" AccelerationRatio="0.3" DecelerationRatio="0.6"/>
+        </Storyboard>
+        <ControlTemplate x:Key="Prev" TargetType="Button">
+            <Grid>
+                <Image Name="Image" Source="Resources/prev.png" Opacity="0.8"/>
+            </Grid>
+            <ControlTemplate.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter TargetName="Image" Property="Opacity" Value="1"/>
+                </Trigger>
+                <Trigger Property="IsPressed" Value="True">
+                    <Setter TargetName="Image" Property="Source" Value="Resources/prev.png"/>
+                </Trigger>
+            </ControlTemplate.Triggers>
+        </ControlTemplate>
+        <ControlTemplate x:Key="PlayPause" TargetType="ToggleButton">
+            <Grid>
+                <Image Name="Image" Source="Resources/play.png" Opacity="0.8"/>
+            </Grid>
+            <ControlTemplate.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter TargetName="Image" Property="Opacity" Value="1"/>
+                </Trigger>
+                <Trigger Property="IsPressed" Value="True">
+                    <Setter TargetName="Image" Property="Source" Value="Resources/play.png"/>
+                </Trigger>
+                <Trigger Property="IsChecked" Value="True">
+                    <Setter TargetName="Image" Property="Source" Value="Resources/pause.png"/>
+                </Trigger>
+                <MultiTrigger>
+                    <MultiTrigger.Conditions>
+                        <Condition Property="IsChecked" Value="True"/>
+                        <Condition Property="IsPressed" Value="True"/>
+                    </MultiTrigger.Conditions>
+                    <Setter TargetName="Image" Property="Source" Value="Resources/pause.png"/>
+                </MultiTrigger>
+            </ControlTemplate.Triggers>
+        </ControlTemplate>
+        <ControlTemplate x:Key="Next" TargetType="Button">
+            <Grid>
+                <Image Name="Image" Source="Resources/next.png" Opacity="0.8"/>
+            </Grid>
+            <ControlTemplate.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter TargetName="Image" Property="Opacity" Value="1"/>
+                </Trigger>
+                <Trigger Property="IsPressed" Value="True">
+                    <Setter TargetName="Image" Property="Source" Value="Resources/next.png"/>
+                </Trigger>
+            </ControlTemplate.Triggers>
+        </ControlTemplate>
+    </UserControl.Resources>
+    <Grid>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Image Grid.Column="0" Name="AlbumArt" Stretch="UniformToFill" RenderOptions.BitmapScalingMode="HighQuality"/>
+            <UniformGrid Grid.Column="1">
+                <Image Name="AlbumArt1" Stretch="UniformToFill" RenderOptions.BitmapScalingMode="HighQuality"/>
+                <Image Name="AlbumArt2" Stretch="UniformToFill" RenderOptions.BitmapScalingMode="HighQuality"/>
+                <Image Name="AlbumArt3" Stretch="UniformToFill" RenderOptions.BitmapScalingMode="HighQuality"/>
+                <Image Name="AlbumArt4" Stretch="UniformToFill" RenderOptions.BitmapScalingMode="HighQuality"/>
+            </UniformGrid>
+        </Grid>
+        <Grid  Name="ControlsGrid" VerticalAlignment="Bottom" Opacity="0" Background="#d24e37" Height="50">
+            <Grid.RenderTransform>
+                <TranslateTransform x:Name="ControlsGridTranslate" Y="50"/>
+            </Grid.RenderTransform>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <Button Name="Prev" Template="{StaticResource Prev}" Margin="0,10,0,10" Click="PrevClick"/>
+                <ToggleButton Name="PlayPause" Template="{StaticResource PlayPause}"  Margin="5" Click="PlayPauseClick"/>
+                <Button Name="Next" Template="{StaticResource Next}" Margin="0,10,0,10" Click="NextClick"/>
+            </StackPanel>
+        </Grid>
+        <TextBlock Text="Music" Foreground="White" FontSize="14" VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="10,0,0,10"/>
+        <Grid Name="PopupGrid" Background="#d24e37" VerticalAlignment="Top" Height="50" Opacity="0">
+            <Grid.RenderTransform>
+                <TranslateTransform x:Name="PopupTranslate" Y="-50"/>
+            </Grid.RenderTransform>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="48"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Image Grid.Column="0" Source="Resources/zune_icon.png" Width="32" Height="32" Margin="15,0,0,0" RenderOptions.BitmapScalingMode="HighQuality"/>
+            <TextBlock Grid.Column="1" Foreground="White" TextWrapping="Wrap" FontSize="16" Margin="10,0,40,0" VerticalAlignment="Center">
+                <Run Name="Artist">Akira Yamaoka</Run>
+                <Run>-</Run>
+                <Run Name="SongTitle">The Room of Angel</Run>
+            </TextBlock>
+        </Grid>
+    </Grid>
+</UserControl>

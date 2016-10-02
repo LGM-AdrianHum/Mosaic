@@ -1,0 +1,19 @@
+﻿<UserControl x:Class="Mosaic.Controls.BottomToolbar"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             Height="60" Background="Black" VerticalAlignment="Bottom">
+    <UserControl.Resources>
+        <Storyboard x:Key="OpenAnim" BeginTime="0:0:0.3">
+            <DoubleAnimation Storyboard.TargetName="Transform" Storyboard.TargetProperty="Y" From="60" To="0"  Duration="0:0:0.2" AccelerationRatio="0.3" DecelerationRatio="0.7"/>
+        </Storyboard>
+        <Storyboard x:Key="CloseAnim" BeginTime="0:0:0.1" Completed="CloseAnimCompleted">
+            <DoubleAnimation Storyboard.TargetName="Transform" Storyboard.TargetProperty="Y" To="60" Duration="0:0:0.2" AccelerationRatio="0.7" DecelerationRatio="0.3"/>
+        </Storyboard>
+    </UserControl.Resources>
+    <UserControl.RenderTransform>
+        <TranslateTransform x:Name="Transform" Y="60"/>
+    </UserControl.RenderTransform>
+    <Grid>
+        <Image Source="/Resources/remove_icon.png" Height="48"/>
+    </Grid>
+</UserControl>

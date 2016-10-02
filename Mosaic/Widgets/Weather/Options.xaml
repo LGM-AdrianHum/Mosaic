@@ -1,0 +1,125 @@
+﻿<Window x:Class="Weather.Options"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:Properties="clr-namespace:Weather.Properties"
+        Title="{x:Static Properties:Resources.OptionsWindowTitle}"
+        WindowStartupLocation="CenterScreen" WindowStyle="None" ResizeMode="NoResize" Background="White" Foreground="Black"
+        SourceInitialized="WindowSourceInitialized">
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Mosaic.Base;component/Resources/TabControlGlass.xaml"/>
+                <ResourceDictionary Source="/Mosaic.Base;component/Resources/Colors.xaml"/>
+                <ResourceDictionary Source="/Mosaic.Base;component/Resources/MetroCheckBox.xaml"/>
+                <ResourceDictionary Source="/Mosaic.Base;component/Resources/MetroComboBox.xaml"/>
+                <ResourceDictionary Source="/Mosaic.Base;component/Resources/MetroButton.xaml"/>
+                <ResourceDictionary Source="/Mosaic.Base;component/Resources/MetroRadioButton.xaml"/>
+                <ResourceDictionary Source="/Mosaic.Base;component/Resources/MetroTextBox.xaml"/>
+                <ResourceDictionary Source="/Mosaic.Base;component/Resources/MetroProgressBar.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+            <Storyboard x:Key="LoadAnim">
+                <DoubleAnimation Storyboard.TargetProperty="Left" To="0" Duration="0:0:0.25" AccelerationRatio="0.3" DecelerationRatio="0.7"/>
+                <DoubleAnimation Storyboard.TargetProperty="Opacity" From="0" To="1" Duration="0:0:0.25" AccelerationRatio="0.3" DecelerationRatio="0.7"/>
+            </Storyboard>
+            <Storyboard x:Key="UnloadAnim" Completed="UnloadAnimCompleted">
+                <DoubleAnimation Storyboard.TargetProperty="Left" Duration="0:0:0.25" AccelerationRatio="0.7"/>
+            </Storyboard>
+        </ResourceDictionary>
+    </Window.Resources>
+    <DockPanel Name="Root" TextOptions.TextFormattingMode="Display">
+        <Grid DockPanel.Dock="Bottom">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,10,30,30">
+                <Button Name="OkButton" Style="{StaticResource MetroButton}" Content="{x:Static Properties:Resources.OptionsOkButton}" MinWidth="125" Margin="0,0,7,0" Click="OkButtonClick"/>
+                <Button Name="CancelButton" Style="{StaticResource MetroButton}" Content="{x:Static Properties:Resources.OptionsCancelButton}" MinWidth="125" Margin="0,0,7,0" Click="CancelButtonClick"/>
+            </StackPanel>
+        </Grid>
+        <Grid DockPanel.Dock="Top">
+            <Image Name="BackButton" Margin="50,58,20,0" Source="/Mosaic.Graphics;component/Hub/back_icon_hub.png" Width="48" HorizontalAlignment="Left" VerticalAlignment="Top" MouseLeftButtonUp="BackButtonMouseLeftButtonUp"/>
+            <TextBlock Text="{x:Static Properties:Resources.OptionsGeneralTabHeader}" FontSize="76" FontWeight="Light" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="150,20,0,0" TextOptions.TextFormattingMode="Ideal"/>
+        </Grid>
+        <TabControl Margin="140,20,0,0" Style="{StaticResource TabControlStyle}" Background="Transparent" BorderThickness="0">
+            <TabItem Header="{x:Static Properties:Resources.OptionsGeneralTabHeader}" Style="{StaticResource TabItemStyle}" Foreground="Black">
+                <ScrollViewer VerticalScrollBarVisibility="Hidden" HorizontalAlignment="Left">
+                    <StackPanel Orientation="Vertical" Margin="10">
+                        <TextBlock FontSize="30" FontWeight="Light" Text="{x:Static Properties:Resources.OptionsLocation}" Foreground="{StaticResource OptionsBigHeaderColor}" TextOptions.TextFormattingMode="Ideal"/>
+                        <DockPanel Margin="0,7,0,0">
+                            <TextBox Name="SearchBox" Style="{StaticResource MetroTextBox}" Text="{x:Static Properties:Resources.OptionsSearchBox}" FontStyle="Italic" Foreground="Gray" Width="400"
+                                 IsKeyboardFocusedChanged="SearchBoxIsKeyboardFocusedChanged" KeyDown="SearchBoxKeyDown"/>
+                            <Button Name="SearchButton" Style="{StaticResource MetroButton}" Content="{x:Static Properties:Resources.OptionsSearchButton}" MinWidth="125" Margin="10,0,7,0" Click="SearchButtonClick"/>
+                        </DockPanel>
+                        <Popup Name="SearchPopup"  MaxHeight="300" PlacementTarget="{Binding ElementName=SearchBox}" PopupAnimation="Slide" AllowsTransparency="True"
+                               StaysOpen="False" HorizontalOffset="-10">
+                            <Grid>
+                                <Border Margin="10,0,10,10" BorderBrush="#b6babf" BorderThickness="1" Background="White">
+                                    <Grid>
+                                        <ListBox Name="SearchResultBox" MinWidth="250" Margin="0,0,0,5" BorderThickness="0" HorizontalContentAlignment="Stretch" SelectionChanged="SearchResultBoxSelectionChanged">
+                                            <ListBox.ItemTemplate>
+                                                <DataTemplate>
+                                                    <StackPanel Orientation="Vertical" Margin="0,0,5,0">
+                                                        <TextBlock Text="{Binding Country, Mode=OneTime}" TextTrimming="CharacterEllipsis" FontFamily="Segoe UI" FontSize="16" Foreground="#c1c1c1"/>
+                                                        <TextBlock Text="{Binding City}" TextTrimming="CharacterEllipsis" FontFamily="Segoe UI" FontSize="16" Margin="10,0,0,0"/>
+                                                    </StackPanel>
+                                                </DataTemplate>
+                                            </ListBox.ItemTemplate>
+                                        </ListBox>
+                                        <ProgressBar Name="ProgressBar" VerticalAlignment="Center" Style="{StaticResource ProgressBarStyle}" IsIndeterminate="True" Padding="0" Margin="0,20,0,20"/>
+                                    </Grid>
+                                </Border>
+                            </Grid>
+                        </Popup>
+                        <TextBlock FontSize="30" FontWeight="Light" Text="{x:Static Properties:Resources.OptionsData}" Margin="0,10,0,0" Foreground="{StaticResource OptionsBigHeaderColor}" TextOptions.TextFormattingMode="Ideal"/>
+                        <CheckBox Name="ShowFeelsLikeCheckBox" Style="{StaticResource MetroCheckBox}" Margin="0,7,0,0" Content="{x:Static Properties:Resources.OptionsShowFeelsLike}"/>
+                        <TextBlock Text="{x:Static Properties:Resources.OptionsShowTempIn}" Margin="0,7,0,0" FontSize="16"/>
+                        <StackPanel Orientation="Horizontal" Margin="17,3,10,0">
+                            <RadioButton Name="FahrenheitRadioButton" Style="{StaticResource MetroRadioButton}" Content="{x:Static Properties:Resources.OptionsFahrenheit}" IsChecked="True"/>
+                            <RadioButton Name="CelsiusRadioButton" Style="{StaticResource MetroRadioButton}" Content="{x:Static Properties:Resources.OptionsCelsius}" Margin="20,0,0,0"/>
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal" Margin="0,7,0,0" >
+                            <TextBlock Text="{x:Static Properties:Resources.OptionsWeatherInterval}" FontSize="16"/>
+                            <TextBlock Name="WeatherIntervalValueTextBlock" Text="20 min." Margin="5,0,3,0" FontWeight="DemiBold" FontSize="16"/>
+                        </StackPanel>
+
+                        <Slider Name="WeatherIntervalSlider" Margin="0,3,0,0" Value="20" TickPlacement="Both" Minimum="20" Maximum="90" TickFrequency="5" SmallChange="10" LargeChange="10"
+                                        IsSnapToTickEnabled="True" IsDirectionReversed="True" ValueChanged="WeatherIntervalSliderValueChanged"/>
+
+                        <TextBlock FontSize="30" FontWeight="Light" Text="{x:Static Properties:Resources.OptionsUI}" Margin="0,10,0,0" Foreground="{StaticResource OptionsBigHeaderColor}" TextOptions.TextFormattingMode="Ideal"/>
+                        <CheckBox Name="ShowVideoCheckBox" Style="{StaticResource MetroCheckBox}" Margin="0,7,0,0" Content="{x:Static Properties:Resources.OptionsShowVideo}"/>
+
+                    </StackPanel>
+                </ScrollViewer>
+            </TabItem>
+            <TabItem Header="{x:Static Properties:Resources.OptionsAboutTabHeader}" Style="{StaticResource TabItemStyle}" Foreground="Black">
+                <ScrollViewer VerticalScrollBarVisibility="Hidden" Width="450" HorizontalAlignment="Left">
+                    <Grid Margin="10">
+                        <Image Width="44" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,40,0,0"/>
+                        <StackPanel Orientation="Vertical">
+                            <TextBlock FontSize="24" FontWeight="Light" Text="{x:Static Properties:Resources.OptionsAbout}" Margin="0,0,0,0" Foreground="{StaticResource OptionsBigHeaderColor}"/>
+                            <Separator/>
+                            <TextBlock Text="Weather widget for Mosaic"  Margin="0,7,0,0"/>
+                            <TextBlock>
+                                    <Run Text="{x:Static Properties:Resources.OptionsVersion}"/> 
+                                    <Run Name="BuildTag" Text="1.0.0.0"/>
+                            </TextBlock>
+                            <TextBlock Text="Copyright © Stealth 2011"/>
+                            <TextBlock Name="SiteLink" TextWrapping="Wrap" Text="http://mosaicproject.codeplex.com" HorizontalAlignment="Left" MouseLeftButtonUp="SiteLinkMouseLeftButtonUp">
+                                    <TextBlock.Style>
+                                        <Style TargetType="{x:Type TextBlock}">
+                                           <Setter Property="Cursor" Value="Hand"/>
+                                           <Setter Property="Foreground" Value="#0066CC"/>
+                                           <Style.Triggers>
+                                                <Trigger Property="IsMouseOver" Value="True">
+                                                    <Setter Property="TextDecorations" Value="Underline"/>
+                                                    <Setter Property="Foreground" Value="#3399ff"/>
+                                                </Trigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </TextBlock.Style>
+                            </TextBlock>
+                        </StackPanel>
+                    </Grid>
+                </ScrollViewer>
+            </TabItem>
+        </TabControl>
+    </DockPanel>
+</Window>

@@ -1,0 +1,15 @@
+﻿<UserControl x:Class="ControlPanel.ControlPanelWidget"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             MouseLeftButtonUp="UserControlMouseLeftButtonUp">
+    <UserControl.Background>
+        <LinearGradientBrush StartPoint="1,0" EndPoint="0,0">
+            <GradientStop Color="#96c434" Offset="0"/>
+            <GradientStop Color="#7ba12a" Offset="1"/>
+        </LinearGradientBrush>
+    </UserControl.Background>
+    <Grid>
+        <Image Source="/ControlPanel;component/Resources/gear_icon.png" Width="65"/>
+        <TextBlock Text="Control Panel" Foreground="White" FontSize="14" VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="10,0,0,10"/>
+    </Grid>
+</UserControl>
